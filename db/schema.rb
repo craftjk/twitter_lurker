@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008221738) do
+ActiveRecord::Schema.define(:version => 20131009005251) do
+
+  create_table "follows", :force => true do |t|
+    t.string   "twitter_follower_id"
+    t.string   "twitter_followee_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "follows", ["twitter_follower_id", "twitter_followee_id"], :name => "index_follows_on_twitter_follower_id_and_twitter_followee_id", :unique => true
 
   create_table "statuses", :force => true do |t|
     t.string   "twitter_status_id"
